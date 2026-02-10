@@ -7,7 +7,7 @@ public class CharacterContoll0 : MonoBehaviour
 {
 
     //parametrs
-    PlayerInput playerInput;
+    GameControls playerInput;
     CharacterController characterController;
     Animator animator;
 
@@ -51,7 +51,7 @@ public class CharacterContoll0 : MonoBehaviour
 
     private void Awake()
     {
-        playerInput = new PlayerInput();
+        playerInput = new GameControls();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 

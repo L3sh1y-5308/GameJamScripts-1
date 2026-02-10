@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class HitBox_Active : MonoBehaviour
+public abstract class HitBox_Active : MonoBehaviour
 {
     [Header("BoxActive Settings")]
     [SerializeField] protected LayerMask detectionMask = ~0;
     [SerializeField] protected Vector3 boxSize = Vector3.one;
+    [SerializeField] protected bool autoUpdateRaycasts = false;
 
     public struct HitBoxData
     {
@@ -24,12 +25,15 @@ public class HitBox_Active : MonoBehaviour
 
     public abstract bool IsHitBoxColides();
 
-    protected HitBoxData hitBoxData()
+    protected abstract void PerformHitBoxDetection();
+
+    protected HitBoxData GetHitBoxData()
     {
         if (autoUpdateRaycasts)
         {
             PerformHitBoxDetection();
         }
+        return hitBoxData;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
