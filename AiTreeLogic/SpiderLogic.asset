@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
-  m_Name: AiLogic1 Debug Info
+  m_Name: SpiderLogic Debug Info
   m_EditorClassIdentifier: 
   m_CodeBreakPointsList: []
 --- !u!114 &11400000
@@ -23,7 +23,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
-  m_Name: AiLogic1
+  m_Name: SpiderLogic
   m_EditorClassIdentifier: 
   Blackboard: {fileID: 6873483784428891749}
   m_Description: 
@@ -55,13 +55,13 @@ MonoBehaviour:
   - rid: 7764048591497724440
   - rid: 7764048591497724441
   - rid: 7764048591690138228
-  m_VersionTimestamp: 639133649950472866
+  m_VersionTimestamp: 639133652446809706
   m_SerializedVersion: 2
   m_DebugInfo: {fileID: -2382863005557858501}
   m_RuntimeGraph: {fileID: 4365503636127914771}
   AssetID:
-    m_Value0: 8429794925409165872
-    m_Value1: 7919444405145311467
+    m_Value0: 4971768290105503301
+    m_Value1: 1997003744292963210
   Story:
     Story: 
     StoryVariableNames: []
@@ -2555,7 +2555,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
-  m_Name: AiLogic1 Blackboard
+  m_Name: SpiderLogic Blackboard
   m_EditorClassIdentifier: 
   VersionTimestamp: 639133649408540096
   AssetID:
@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
-  m_Name: AiLogic1
+  m_Name: SpiderLogic
   m_EditorClassIdentifier: 
   Graphs:
   - rid: 3919378920363786326
@@ -2700,15 +2700,15 @@ MonoBehaviour:
       type: {class: BehaviorGraphModule, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         AuthoringAssetID:
-          m_Value0: 8429794925409165872
-          m_Value1: 7919444405145311467
+          m_Value0: 4971768290105503301
+          m_Value1: 1997003744292963210
         m_DebugInfo: {fileID: -2382863005557858501}
         BlackboardReference:
           rid: 3919378920363786327
         BlackboardGroupReferences: []
         Root:
           rid: 7764048591690138448
-        m_VersionTimestamp: 639133649950472866
+        m_VersionTimestamp: 639133652446809706
     - rid: 3919378920363786327
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -3547,11 +3547,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
-  m_Name: AiLogic1 Blackboard
+  m_Name: SpiderLogic Blackboard
   m_EditorClassIdentifier: 
   AssetID:
-    m_Value0: 8429794925409165872
-    m_Value1: 7919444405145311467
+    m_Value0: 4971768290105503301
+    m_Value1: 1997003744292963210
   m_Variables:
   - rid: 3919378920363786331
   - rid: 3919378987540807766

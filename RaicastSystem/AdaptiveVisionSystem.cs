@@ -43,6 +43,18 @@ public class AdaptiveVisionSystem : MonoBehaviour
     public float playerCheckRadius = 0.5f;
     public bool isPlayerVisible { get; private set; } = false;
 
+    [Header("Food Detection")]
+    public string foodTag = "Food";
+    public Transform detectedFood = null;
+    public float foodCheckRadius = 0.5f;
+    public bool isFoodVisible { get; private set; } = false;
+
+    [Header("Danger Detection")]
+    public string dangerTag = "Danger";
+    public Transform detectedDanger = null;
+    public float dangerCheckRadius = 0.5f;
+    public bool isDangerVisible { get; private set; } = false;
+
     [Header("Debug Visualization")]
     public bool showRays = true;
     public bool showPlayerConnection = true;
@@ -50,6 +62,8 @@ public class AdaptiveVisionSystem : MonoBehaviour
     public Color obstructedRayColor = Color.red;
     public Color adaptedRayColor = Color.yellow;
     public Color playerConnectionColor = Color.magenta;
+    public Color foodConnectionColor = Color.cyan;
+    public Color dangerConnectionColor = Color.black;
 
     private List<Vector3> directions = new List<Vector3>();
     private List<float> directionMaxRanges = new List<float>();
@@ -82,6 +96,8 @@ public class AdaptiveVisionSystem : MonoBehaviour
             SmoothRangeTransition();
 
         CheckPlayerInVisionZone();
+        CheckFoodInVisionZone();
+        CheckDangerInVisionZone();
     }
 
     /// <summary>
@@ -108,6 +124,58 @@ public class AdaptiveVisionSystem : MonoBehaviour
         if (CanSeePlayer())
         {
             return detectedPlayer;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Проверяет, может ли враг видеть еду.
+    /// Используется для интеграции с Behavior Tree.
+    /// </summary>
+    public bool CanSeeFood()
+    {
+        if (detectedFood != null && isFoodVisible)
+        {
+            return IsTargetVisible(detectedFood);
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Возвращает текущую обнаруженную еду (если она видна).
+    /// Для удобства работы с Behavior Tree.
+    /// </summary>
+    public Transform GetDetectedFood()
+    {
+        if (CanSeeFood())
+        {
+            return detectedFood;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Проверяет, может ли враг видеть опасность.
+    /// Используется для интеграции с Behavior Tree.
+    /// </summary>
+    public bool CanSeeDanger()
+    {
+        if (detectedDanger != null && isDangerVisible)
+        {
+            return IsTargetVisible(detectedDanger);
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Возвращает текущую обнаруженную опасность (если она видна).
+    /// Для удобства работы с Behavior Tree.
+    /// </summary>
+    public Transform GetDetectedDanger()
+    {
+        if (CanSeeDanger())
+        {
+            return detectedDanger;
         }
         return null;
     }
@@ -332,6 +400,104 @@ public class AdaptiveVisionSystem : MonoBehaviour
     }
 
     /// <summary>
+    /// Проверяет наличие еды в зоне обзора
+    /// </summary>
+    void CheckFoodInVisionZone()
+    {
+        Vector3 origin = cachedTransform.position;
+        Transform foundFood = null;
+
+        // Ищем еду по тегу в сцене
+        GameObject[] foodObjects = GameObject.FindGameObjectsWithTag(foodTag);
+
+        foreach (GameObject foodObj in foodObjects)
+        {
+            Transform food = foodObj.transform;
+            if (IsTargetVisible(food))
+            {
+                foundFood = food;
+                break;
+            }
+        }
+
+        // Обновляем состояние обнаружения еды
+        bool wasVisible = isFoodVisible;
+
+        if (foundFood != null)
+        {
+            detectedFood = foundFood;
+            isFoodVisible = true;
+
+            if (!wasVisible)
+                OnFoodDetected();
+        }
+        else
+        {
+            if (detectedFood != null)
+            {
+                if (!IsTargetVisible(detectedFood))
+                {
+                    isFoodVisible = false;
+                    OnFoodLost();
+                }
+            }
+            else
+            {
+                isFoodVisible = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Проверяет наличие опасности в зоне обзора
+    /// </summary>
+    void CheckDangerInVisionZone()
+    {
+        Vector3 origin = cachedTransform.position;
+        Transform foundDanger = null;
+
+        // Ищем опасность по тегу в сцене
+        GameObject[] dangerObjects = GameObject.FindGameObjectsWithTag(dangerTag);
+
+        foreach (GameObject dangerObj in dangerObjects)
+        {
+            Transform danger = dangerObj.transform;
+            if (IsTargetVisible(danger))
+            {
+                foundDanger = danger;
+                break;
+            }
+        }
+
+        // Обновляем состояние обнаружения опасности
+        bool wasVisible = isDangerVisible;
+
+        if (foundDanger != null)
+        {
+            detectedDanger = foundDanger;
+            isDangerVisible = true;
+
+            if (!wasVisible)
+                OnDangerDetected();
+        }
+        else
+        {
+            if (detectedDanger != null)
+            {
+                if (!IsTargetVisible(detectedDanger))
+                {
+                    isDangerVisible = false;
+                    OnDangerLost();
+                }
+            }
+            else
+            {
+                isDangerVisible = false;
+            }
+        }
+    }
+
+    /// <summary>
     /// Проверяет, виден ли игрок из позиции врага
     /// </summary>
     public bool IsPlayerVisible(Transform player)
@@ -388,6 +554,61 @@ public class AdaptiveVisionSystem : MonoBehaviour
     }
 
     /// <summary>
+    /// Проверяет, виден ли целевой объект (еда или опасность)
+    /// </summary>
+    public bool IsTargetVisible(Transform target)
+    {
+        if (target == null)
+            return false;
+
+        Vector3 origin = cachedTransform.position;
+        Vector3 directionToTarget = (target.position - origin).normalized;
+        float distanceToTarget = Vector3.Distance(origin, target.position);
+
+        // Проверка попадания в углы обзора
+        Vector3 localDir = cachedTransform.InverseTransformDirection(directionToTarget);
+        float elevationDeg = Mathf.Asin(Mathf.Clamp(localDir.y, -1f, 1f)) * Mathf.Rad2Deg;
+        float azimuthDeg = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+
+        // Проверка вертикального угла
+        if (elevationDeg > verticalAngleUp || elevationDeg < -verticalAngleDown)
+            return false;
+
+        // Проверка горизонтального угла
+        float halfH = horizontalAngle * 0.5f;
+        float relAzimuth = Mathf.DeltaAngle(horizontalOffset, azimuthDeg);
+        if (relAzimuth < -halfH || relAzimuth > halfH)
+            return false;
+
+        // Проверка максимальной дистанции
+        float maxAllowedDistance = GetMaxRangeInDirection(directionToTarget);
+        if (distanceToTarget > maxAllowedDistance)
+            return false;
+
+        // Проверка препятствий
+        RaycastHit hit;
+        Vector3 rayStart = origin + Vector3.up * 0.5f;
+        Vector3 targetCenter = target.position + Vector3.up * 0.5f;
+        Vector3 rayDirection = (targetCenter - rayStart).normalized;
+        float rayDistance = Vector3.Distance(rayStart, targetCenter);
+
+        if (Physics.Raycast(rayStart, rayDirection, out hit, rayDistance, obstacleLayer))
+        {
+            // Проверяем, не попали ли в сам целевой объект
+            if (hit.collider.transform == target ||
+                hit.collider.transform.IsChildOf(target) ||
+                target.IsChildOf(hit.collider.transform))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
     /// Возвращает максимальную дальность обзора в заданном направлении
     /// </summary>
     public float GetMaxRangeInDirection(Vector3 worldDirection)
@@ -417,7 +638,7 @@ public class AdaptiveVisionSystem : MonoBehaviour
     {
         Debug.Log($"<color=green>[{gameObject.name}] Player detected!</color>");
 
-        // Интеграция с EnemyAI
+        // Интеграция с Blackboard BT
         EnemyAI enemyAI = GetComponent<EnemyAI>();
         if (enemyAI != null)
         {
@@ -438,6 +659,38 @@ public class AdaptiveVisionSystem : MonoBehaviour
         {
             enemyAI.LoseTarget();
         }
+    }
+
+    /// <summary>
+    /// Вызывается когда еда обнаружена
+    /// </summary>
+    public virtual void OnFoodDetected()
+    {
+        Debug.Log($"<color=cyan>[{gameObject.name}] Food detected!</color>");
+    }
+
+    /// <summary>
+    /// Вызывается когда еда потеряна из виду
+    /// </summary>
+    protected virtual void OnFoodLost()
+    {
+        Debug.Log($"<color=cyan>[{gameObject.name}] Food lost!</color>");
+    }
+
+    /// <summary>
+    /// Вызывается когда опасность обнаружена
+    /// </summary>
+    public virtual void OnDangerDetected()
+    {
+        Debug.Log($"<color=red>[{gameObject.name}] Danger detected!</color>");
+    }
+
+    /// <summary>
+    /// Вызывается когда опасность потеряна из виду
+    /// </summary>
+    protected virtual void OnDangerLost()
+    {
+        Debug.Log($"<color=red>[{gameObject.name}] Danger lost!</color>");
     }
 
     void OnDrawGizmos()
@@ -493,6 +746,22 @@ public class AdaptiveVisionSystem : MonoBehaviour
             Gizmos.color = playerConnectionColor;
             Gizmos.DrawLine(origin, detectedPlayer.position);
             Gizmos.DrawSphere(detectedPlayer.position, 0.15f);
+        }
+
+        // Рисуем соединение с обнаруженной едой
+        if (showPlayerConnection && detectedFood != null && isFoodVisible)
+        {
+            Gizmos.color = foodConnectionColor;
+            Gizmos.DrawLine(origin, detectedFood.position);
+            Gizmos.DrawSphere(detectedFood.position, 0.15f);
+        }
+
+        // Рисуем соединение с обнаруженной опасностью
+        if (showPlayerConnection && detectedDanger != null && isDangerVisible)
+        {
+            Gizmos.color = dangerConnectionColor;
+            Gizmos.DrawLine(origin, detectedDanger.position);
+            Gizmos.DrawSphere(detectedDanger.position, 0.15f);
         }
 
         // Рисуем центр врага
