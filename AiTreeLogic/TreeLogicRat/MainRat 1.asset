@@ -1,0 +1,407 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7344338950490644938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
+  m_Name: MainRat 1
+  m_EditorClassIdentifier: 
+  VersionTimestamp: 639135400254606015
+  AssetID:
+    m_Value0: 14186067135333003546
+    m_Value1: 6873930877937941674
+  m_Blackboard:
+    m_Variables:
+    - rid: 7764048638472880671
+    - rid: 7764048638727160618
+    - rid: 7764048638727160698
+    - rid: 7764048638727160780
+    - rid: 7764048638472881089
+    - rid: 7764048638472880705
+    - rid: 7764048638727160172
+    - rid: 7764048638727160242
+    - rid: 7764048638727160314
+    - rid: 7764048638727160388
+    - rid: 7764048638727160464
+    - rid: 7764048638803181641
+    - rid: 7764048638803181814
+    - rid: 7764048638803181902
+    - rid: 7764048638803181992
+    - rid: 7764048638803182084
+    - rid: 7764048638803182178
+    - rid: 7764048638803182274
+  m_SharedBlackboardVariableGuids: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7764048638472880671
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12509730861124381617
+          m_Value1: 18324595838542046819
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 7764048638472880705
+      type: {class: 'BlackboardVariable`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10011151780358666078
+          m_Value1: 2619789516331620969
+        Name: SG_Percept
+        m_Value: {fileID: 3756098156776733998, guid: 25c1ba026bc3fb5408ae9d19782d52b2, type: 2}
+    - rid: 7764048638472881089
+      type: {class: 'BlackboardVariable`1[[MainEnum, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12358805059374701683
+          m_Value1: 1478443663419343620
+        Name: MainEnum
+        m_Value: 0
+    - rid: 7764048638727160172
+      type: {class: 'BlackboardVariable`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13817305507558242432
+          m_Value1: 897891966577055956
+        Name: SG_Peaceful
+        m_Value: {fileID: -278509036359549631, guid: a3c46c82f2c519e43b46f8b59e77dddb, type: 2}
+    - rid: 7764048638727160242
+      type: {class: 'BlackboardVariable`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1184370272903086800
+          m_Value1: 13404458924838114909
+        Name: SG_Combat
+        m_Value: {fileID: -7789143998397570220, guid: 49bf305797c0dfa48a580d29d0f92525, type: 2}
+    - rid: 7764048638727160314
+      type: {class: 'BlackboardVariable`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 7203095375520087016
+          m_Value1: 2017558377263129687
+        Name: SG_Survival
+        m_Value: {fileID: -999785096717945275, guid: 7ab628d6904ea664da02b8f5c13aeb42, type: 2}
+    - rid: 7764048638727160388
+      type: {class: 'BlackboardVariable`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14137106360775783738
+          m_Value1: 1770277744334816260
+        Name: SG_Hunger
+        m_Value: {fileID: -6278121274629379715, guid: e5d1373a1c5feee4083c2613339d1109, type: 2}
+    - rid: 7764048638727160464
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3657600499071578668
+          m_Value1: 2024649994765065856
+        Name: TargetDetect
+        m_Value: 0
+    - rid: 7764048638727160618
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9628972810184440666
+          m_Value1: 2968698258122676210
+        Name: Player
+        m_Value: {fileID: 0}
+    - rid: 7764048638727160698
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10129153552803622355
+          m_Value1: 9176717470703747564
+        Name: ScaryMonster
+        m_Value: 
+    - rid: 7764048638727160780
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5595900686206568486
+          m_Value1: 1048933635925634357
+        Name: Food
+        m_Value: 
+    - rid: 7764048638803181641
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3892525900434616666
+          m_Value1: 12017575677234769316
+        Name: FoodDetect
+        m_Value: 0
+    - rid: 7764048638803181814
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3736754837303365203
+          m_Value1: 15973040150383025466
+        Name: DangerMonster
+        m_Value: 0
+    - rid: 7764048638803181902
+      type: {class: 'BlackboardVariable`1[[AdaptiveVisionSystem, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11037597126923893990
+          m_Value1: 11586848040356863097
+        Name: The_Adaptive Vision System
+        m_Value: {fileID: 0}
+    - rid: 7764048638803181992
+      type: {class: 'BlackboardVariable`1[[RandomMovement, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 7294263937285422493
+          m_Value1: 11143392360518543552
+        Name: The_Random Movement
+        m_Value: {fileID: 0}
+    - rid: 7764048638803182084
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6959314265577395406
+          m_Value1: 7632307238850346843
+        Name: HungerStats
+        m_Value: 0
+    - rid: 7764048638803182178
+      type: {class: 'BlackboardVariable`1[[UnityEngine.AI.NavMeshAgent, UnityEngine.AIModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8328342162149829019
+          m_Value1: 15496082431108945964
+        Name: AiNav
+        m_Value: {fileID: 0}
+    - rid: 7764048638803182274
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8997789055513397778
+          m_Value1: 15703178768523526203
+        Name: PatrolPoints
+        m_Value: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
+  m_Name: MainRat 1
+  m_EditorClassIdentifier: 
+  AssetID:
+    m_Value0: 14186067135333003546
+    m_Value1: 6873930877937941674
+  m_Variables:
+  - rid: 7764048638472880670
+  - rid: 7764048638727160617
+  - rid: 7764048638727160697
+  - rid: 7764048638727160779
+  - rid: 7764048638472881088
+  - rid: 7764048638472880704
+  - rid: 7764048638727160171
+  - rid: 7764048638727160241
+  - rid: 7764048638727160313
+  - rid: 7764048638727160387
+  - rid: 7764048638727160463
+  - rid: 7764048638803181640
+  - rid: 7764048638803181813
+  - rid: 7764048638803181901
+  - rid: 7764048638803181991
+  - rid: 7764048638803182083
+  - rid: 7764048638803182177
+  - rid: 7764048638803182273
+  m_VersionTimestamp: 639135400254606015
+  m_CommandBuffer:
+    m_Commands: []
+  m_RuntimeBlackboardAsset: {fileID: -7344338950490644938}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7764048638472880670
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 12509730861124381617
+          m_Value1: 18324595838542046819
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 7764048638472880704
+      type: {class: 'TypedVariableModel`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 10011151780358666078
+          m_Value1: 2619789516331620969
+        Name: SG_Percept
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 3756098156776733998, guid: 25c1ba026bc3fb5408ae9d19782d52b2, type: 2}
+    - rid: 7764048638472881088
+      type: {class: 'TypedVariableModel`1[[MainEnum, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 12358805059374701683
+          m_Value1: 1478443663419343620
+        Name: MainEnum
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 7764048638727160171
+      type: {class: 'TypedVariableModel`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 13817305507558242432
+          m_Value1: 897891966577055956
+        Name: SG_Peaceful
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: -278509036359549631, guid: a3c46c82f2c519e43b46f8b59e77dddb, type: 2}
+    - rid: 7764048638727160241
+      type: {class: 'TypedVariableModel`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1184370272903086800
+          m_Value1: 13404458924838114909
+        Name: SG_Combat
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: -7789143998397570220, guid: 49bf305797c0dfa48a580d29d0f92525, type: 2}
+    - rid: 7764048638727160313
+      type: {class: 'TypedVariableModel`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 7203095375520087016
+          m_Value1: 2017558377263129687
+        Name: SG_Survival
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: -999785096717945275, guid: 7ab628d6904ea664da02b8f5c13aeb42, type: 2}
+    - rid: 7764048638727160387
+      type: {class: 'TypedVariableModel`1[[Unity.Behavior.BehaviorGraph, Unity.Behavior]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 14137106360775783738
+          m_Value1: 1770277744334816260
+        Name: SG_Hunger
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: -6278121274629379715, guid: e5d1373a1c5feee4083c2613339d1109, type: 2}
+    - rid: 7764048638727160463
+      type: {class: 'TypedVariableModel`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 3657600499071578668
+          m_Value1: 2024649994765065856
+        Name: TargetDetect
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 7764048638727160617
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 9628972810184440666
+          m_Value1: 2968698258122676210
+        Name: Player
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 7764048638727160697
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 10129153552803622355
+          m_Value1: 9176717470703747564
+        Name: ScaryMonster
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 7764048638727160779
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 5595900686206568486
+          m_Value1: 1048933635925634357
+        Name: Food
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 7764048638803181640
+      type: {class: 'TypedVariableModel`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 3892525900434616666
+          m_Value1: 12017575677234769316
+        Name: FoodDetect
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 7764048638803181813
+      type: {class: 'TypedVariableModel`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 3736754837303365203
+          m_Value1: 15973040150383025466
+        Name: DangerMonster
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 7764048638803181901
+      type: {class: 'TypedVariableModel`1[[AdaptiveVisionSystem, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 11037597126923893990
+          m_Value1: 11586848040356863097
+        Name: The_Adaptive Vision System
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 7764048638803181991
+      type: {class: 'TypedVariableModel`1[[RandomMovement, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 7294263937285422493
+          m_Value1: 11143392360518543552
+        Name: The_Random Movement
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 7764048638803182083
+      type: {class: 'TypedVariableModel`1[[System.Int32, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6959314265577395406
+          m_Value1: 7632307238850346843
+        Name: HungerStats
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 7764048638803182177
+      type: {class: 'TypedVariableModel`1[[UnityEngine.AI.NavMeshAgent, UnityEngine.AIModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 8328342162149829019
+          m_Value1: 15496082431108945964
+        Name: AiNav
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 7764048638803182273
+      type: {class: 'TypedVariableModel`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 8997789055513397778
+          m_Value1: 15703178768523526203
+        Name: PatrolPoints
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: []

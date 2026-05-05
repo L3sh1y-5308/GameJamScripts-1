@@ -87,6 +87,9 @@ public class AdaptiveVisionSystem : MonoBehaviour
 
     void Update()
     {
+        GenerateDirections();
+        InitializeRanges();
+        PrecalculateNeighbors();
         AdaptToEnvironment();
 
         if (smoothAdaptation)
@@ -109,6 +112,17 @@ public class AdaptiveVisionSystem : MonoBehaviour
     {
         return isPlayerVisible ? detectedPlayer : null;
     }
+
+    public bool CanSeeFood()
+    {
+        return isFoodVisible && detectedFood != null;
+    }
+
+    public bool CanSeeDanger()
+    {
+        return isDangerVisible && detectedDanger != null;
+    }
+
 
     // --- VISION LOGIC ---
 
@@ -326,6 +340,8 @@ public class AdaptiveVisionSystem : MonoBehaviour
 
     void CheckFoodInVisionZone()
     {
+        if (string.IsNullOrEmpty(foodTag)) return;
+
         Vector3 origin = cachedTransform.position + Vector3.up * eyeHeight;
         Collider[] hitColliders = Physics.OverlapSphere(origin, maxDetectionRange, -1);
         isFoodVisible = false;
@@ -342,6 +358,8 @@ public class AdaptiveVisionSystem : MonoBehaviour
 
     void CheckDangerInVisionZone()
     {
+        if (string.IsNullOrEmpty(dangerTag)) return;
+
         Vector3 origin = cachedTransform.position + Vector3.up * eyeHeight;
         Collider[] hitColliders = Physics.OverlapSphere(origin, maxDetectionRange, -1);
         isDangerVisible = false;
@@ -354,6 +372,42 @@ public class AdaptiveVisionSystem : MonoBehaviour
                 break;
             }
         }
+    }
+
+    // --- UNIVERSAL DETECTION FOR BT ---
+
+    /// <summary>
+    /// Ищет первый видимый объект с указанным тегом в зоне обзора.
+    /// </summary>
+    public Transform FindVisibleByTag(string tag)
+    {
+        if (string.IsNullOrEmpty(tag)) return null;
+
+        Vector3 origin = cachedTransform.position + Vector3.up * eyeHeight;
+        Collider[] hits = Physics.OverlapSphere(origin, maxDetectionRange, -1);
+
+        foreach (Collider col in hits)
+        {
+            if (col.CompareTag(tag) && IsTargetVisible(col.transform))
+                return col.transform;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Ищет первый видимый объект на указанном слое (LayerMask).
+    /// </summary>
+    public Transform FindVisibleByLayer(LayerMask layer)
+    {
+        Vector3 origin = cachedTransform.position + Vector3.up * eyeHeight;
+        Collider[] hits = Physics.OverlapSphere(origin, maxDetectionRange, layer);
+
+        foreach (Collider col in hits)
+        {
+            if (IsTargetVisible(col.transform))
+                return col.transform;
+        }
+        return null;
     }
 
     // --- EVENTS ---

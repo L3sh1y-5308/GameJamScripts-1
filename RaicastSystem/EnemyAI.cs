@@ -51,20 +51,38 @@ public class EnemyAI : MonoBehaviour
         // Sync vision system state with AI
         if (visionSystem != null)
         {
+            // Sync Player
             if (visionSystem.isPlayerVisible && visionSystem.detectedPlayer != null)
-                SetTarget(visionSystem.detectedPlayer);
-            else if (!visionSystem.isPlayerVisible)
+            {
+                if (targetPlayer != visionSystem.detectedPlayer)
+                    SetTarget(visionSystem.detectedPlayer);
+            }
+            else if (!visionSystem.isPlayerVisible && targetPlayer != null)
+            {
                 LoseTarget();
+            }
 
+            // Sync Food
             if (visionSystem.isFoodVisible && visionSystem.detectedFood != null)
-                SetDetectedFood(visionSystem.detectedFood);
-            else if (!visionSystem.isFoodVisible)
+            {
+                if (detectedFood != visionSystem.detectedFood)
+                    SetDetectedFood(visionSystem.detectedFood);
+            }
+            else if (!visionSystem.isFoodVisible && detectedFood != null)
+            {
                 LoseFood();
+            }
 
+            // Sync Danger
             if (visionSystem.isDangerVisible && visionSystem.detectedDanger != null)
-                SetDetectedDanger(visionSystem.detectedDanger);
-            else if (!visionSystem.isDangerVisible)
+            {
+                if (detectedDanger != visionSystem.detectedDanger)
+                    SetDetectedDanger(visionSystem.detectedDanger);
+            }
+            else if (!visionSystem.isDangerVisible && detectedDanger != null)
+            {
                 LoseDanger();
+            }
         }
     }
 

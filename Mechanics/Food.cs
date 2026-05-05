@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Food : MonoBehaviour
 {
     [Header("Food Settings")]
-    [SerializeField] float satietyValue = 25f; // сколько сытости даёт эта пища
+    [SerializeField] int satietyValue = 25; // сколько сытости даёт эта пища
 
     [Header("Events")]
     public UnityEvent<float> OnFoodConsumed;
@@ -34,7 +34,7 @@ public class Food : MonoBehaviour
     /// </summary>
     public void SetSatietyValue(float value)
     {
-        satietyValue = Mathf.Max(0, value);
+        satietyValue = Mathf.Max(0, (int)value);
     }
 
     /// <summary>

@@ -29,6 +29,7 @@ public class RandomMovement : MonoBehaviour
         Patrol();
     }
 
+
     private void Patrol()
     {
         // Check if agent has reached destination
